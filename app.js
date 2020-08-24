@@ -92,7 +92,7 @@ function buildCharts(id) {
         var layout3 = {
             title: "Count of Bacteria by Family - Subject ID 940 ",
             height: 600,
-            width: 1200,
+            width: 1200
         }
         // creating data variable 
         var data3 = [trace3]
@@ -108,7 +108,7 @@ function buildCharts(id) {
 function buildMetaData(id) {
     // read the json file to get data
     d3.json("samples.json").then((data) => {
-        // get the metadata info for the demographic panel
+        // extract the metadata 
         var metadata = data.metadata
 
         console.log(metadata)
@@ -118,17 +118,15 @@ function buildMetaData(id) {
         // select demographic panel to put data
         var demographicInfo = d3.select("#sample-metadata")
 
-        // clear the demographic info panel each time before getting new id info
+        // clear the demographic info panel
         demographicInfo.html("")
 
-        // grab the necessary demographic data data for the id and append the info to the panel
+        // grab the demographic data for selected id 
         Object.entries(result).forEach((key) => {
             demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n")
         })
     })
 }
-
-d3.selectAll("#selDataset").on("change", buildCharts)
 
  
 // create the function for the initial data rendering
